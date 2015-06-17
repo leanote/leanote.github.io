@@ -30,11 +30,7 @@ listStr=addAnchors(listStr);listStr=listStr.replace(/\n{2,}(?=\\x03)/,"\n");list
 	     var _doc = document.getElementsByTagName('head')[0];
 	     var script = document.createElement('script');
 	     script.setAttribute('type', 'text/javascript');
-	     var mainHref = document.currentScript.src;
-	     console.log(mainHref);
-	     var mainHrefs = mainHref.split('/');
-	     mainHrefs.pop()
-	     var baseHref = mainHrefs.join('/');
+	     var baseHref = 'http://leanote.github.io/markdown-to-html';
 	     script.setAttribute('src', baseHref + '/' + src);
 	     _doc.appendChild(script);
 	     script.onload = script.onreadystatechange = function() {
