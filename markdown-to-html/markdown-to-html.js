@@ -30,7 +30,11 @@ listStr=addAnchors(listStr);listStr=listStr.replace(/\n{2,}(?=\\x03)/,"\n");list
 	     var _doc = document.getElementsByTagName('head')[0];
 	     var script = document.createElement('script');
 	     script.setAttribute('type', 'text/javascript');
-	     script.setAttribute('src', src);
+	     var mainHref = location.href;
+	     var mainHrefs = mainHref.split('/');
+	     mainHrefs.pop()
+	     var baseHref = mainHrefs.join('/');
+	     script.setAttribute('src', baseHref + '/' + src);
 	     _doc.appendChild(script);
 	     script.onload = script.onreadystatechange = function() {
 	        if(!this.readyState || this.readyState=='loaded' || this.readyState=='complete'){
@@ -546,7 +550,7 @@ listStr=addAnchors(listStr);listStr=listStr.replace(/\n{2,}(?=\\x03)/,"\n");list
 
 	        if(sequenceElems.length > 0 || flowElems.length > 0) {
 	        	if(!_loadUmlJs) {
-		        	loadJs('./libs/uml.js', function() {
+		        	loadJs('libs/uml.js', function() {
 		        		_loadUmlJs = true;
 		                convert();
 		            }); 
@@ -598,7 +602,7 @@ listStr=addAnchors(listStr);listStr=listStr.replace(/\n{2,}(?=\\x03)/,"\n");list
 		// 表示有mathjax?
 		// 加载mathJax
 		if(mdText.indexOf('$') !== -1) {
-			loadJs("./libs/MathJax/MathJax.js?config=TeX-AMS_HTML", function() {
+			loadJs("libs/MathJax/MathJax.js?config=TeX-AMS_HTML", function() {
 				if(!m) {
 					var m = initMathJax();
 				}
